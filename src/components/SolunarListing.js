@@ -1,10 +1,16 @@
 export default function SolunarListing({ lat, lon, date, data }) {
+
+	const stars = [];
+	for( let i = 0; i < data.dayRating; i++ ) {
+		stars.push('⭐')
+	}
+
 	return (
 		<div className="solunar-listing">
 			<ul>
 				<li><label htmlFor="date">Date:</label><span className="date">{date}</span></li>
 				<li><label htmlFor="loc">Location:</label><span className="date">{lat},{lon}</span></li>
-				<li><label htmlFor="stars">Prediction:</label><span className="stars">{data.dayRating}</span></li>
+				<li><label htmlFor="stars">Prediction:</label><span className="stars">{stars}</span></li>
 				<li><label>Best Times:</label>
 					<ul>
 						<li>{data.major1Start} - {data.major1Stop}</li>
@@ -18,11 +24,7 @@ export default function SolunarListing({ lat, lon, date, data }) {
 					</ul>
 				</li>
 			</ul>
-			<pre className="solunar-data">
-			{
-				JSON.stringify(data, null, 2)
-			}
-			</pre>
+			<pre className="solunar-data">{JSON.stringify(data, null, 2)}</pre>
 		</div>
 	);
 }
