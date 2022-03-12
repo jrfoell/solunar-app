@@ -19,14 +19,11 @@ export default function SolunarData( { lat, lon, date, utcOffset } ) {
 	}, [lat, lon, date, utcOffset]);
 
 	return (
-	  <>
-		<h2>Response</h2>
 		<SolunarListing
 			lat={lat}
 			lon={lon}
 			date={date}
 			data={data}
 		/>
-	  </>
 	);
   }
