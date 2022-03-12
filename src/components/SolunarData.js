@@ -5,24 +5,27 @@ import {
 
 import SolunarListing from './SolunarListing';
 
-export default function SolunarData() {
+export default function SolunarData( { lat, lon, date, utcOffset } ) {
 	const [data, setData] = useState([]);
 
 	useEffect(() => {
 	  async function fetchData() {
-		const result = await fetch('https://api.solunar.org/solunar/42.66,-84.07,20180207,-4');
+		const result = await fetch(`https://api.solunar.org/solunar/${lat},${lon},${date},${utcOffset}`);
 		const data = await result.json();
 		setData(data);
 	  }
 
 	  fetchData();
-	}, []);
+	}, [lat, lon, date, utcOffset]);
 
 	return (
 	  <>
 		<h2>Response</h2>
 		<SolunarListing
-		  data={data}
+			lat={lat}
+			lon={lon}
+			date={date}
+			data={data}
 		/>
 	  </>
 	);
